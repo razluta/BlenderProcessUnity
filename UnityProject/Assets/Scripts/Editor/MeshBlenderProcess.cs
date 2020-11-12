@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 
@@ -15,6 +16,10 @@ namespace Editor
         [MenuItem(MenuItemBlenderToolsRunMeshProcess)]
         private static void RunMeshProcess()
         {
+            var currentRelativeAssetPath = AssetDatabase.GetAssetPath(Selection.activeObject);
+            var unityProjectPath = Directory.GetParent(Application.dataPath).ToString();
+            var absoluteAssetPath = Path.GetFullPath(Path.Combine(unityProjectPath, currentRelativeAssetPath));
+
             try 
             {
                 var myProcess = new Process
@@ -22,13 +27,12 @@ namespace Editor
                     StartInfo =
                     {
                         FileName = BlenderScriptPath,
-                        //Arguments = 
+                        Arguments = absoluteAssetPath
                     }
                 };
                 myProcess.Start();
                 myProcess.WaitForExit();
                 myProcess.Close();
-                UnityEngine.Debug.Log("Successfully ran");
             }
             catch (Exception exception)
             {

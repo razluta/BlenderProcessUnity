@@ -1,0 +1,1 @@
+print("Successfully running Python script in Blender.")

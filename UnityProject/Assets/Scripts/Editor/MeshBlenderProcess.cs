@@ -7,10 +7,8 @@ namespace Editor
 {
     public class MeshBlenderProcess : UnityEditor.Editor
     {
-        private const string CommandPromptPath = "C:\\Windows\\system32\\CMD.exe";
-        private const string BlenderScriptPartition = "/D";
         private const string BlenderScriptPath = 
-            "D:\\example-repos\\BlenderProcessUnity\\BlenderScripts\\run_mesh_process.bat";
+            "D:\\example-repos\\BlenderProcessUnity\\BlenderScripts\\RunMeshProcess.bat";
         private const string MenuItemBlenderToolsRunMeshProcess = "Assets/Blender Tools/Run Mesh Process";
 
         // Showing a menu item for the process
@@ -23,16 +21,13 @@ namespace Editor
                 {
                     StartInfo =
                     {
-                        //WindowStyle = ProcessWindowStyle.Hidden,
-                        CreateNoWindow = true,
-                        UseShellExecute = false,
-                        FileName = CommandPromptPath,
-                        Arguments = BlenderScriptPartition + BlenderScriptPath
-                    },
-                    EnableRaisingEvents = true
+                        FileName = BlenderScriptPath,
+                        //Arguments = 
+                    }
                 };
                 myProcess.Start();
                 myProcess.WaitForExit();
+                myProcess.Close();
                 UnityEngine.Debug.Log("Successfully ran");
             }
             catch (Exception exception)

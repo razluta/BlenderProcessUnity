@@ -17,8 +17,7 @@ echo Running Blender installed at path: %blender-directory-path%
 echo Executing script at path: %mesh-process-script-path%
 echo.
 
-:: Triggering the Blender command
-blender -b -P %mesh-process-script-path%
-
+:: Triggering the Blender command and passing the current .bat argument as an argument for the .py script
+blender -b -P %mesh-process-script-path% -- --path %1
 
 pause

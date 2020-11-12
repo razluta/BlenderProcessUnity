@@ -11,7 +11,14 @@ set mesh-process-script-path="D:\example-repos\BlenderProcessUnity\BlenderScript
 :: Switching the current directory to where Blender is installed
 cd %blender-directory-path%
 
+:: Echo-ing the data
+echo Processing asset at path: "%1"
+echo Running Blender installed at path: %blender-directory-path%
+echo Executing script at path: %mesh-process-script-path%
+echo.
+
 :: Triggering the Blender command
 blender -b -P %mesh-process-script-path%
+
 
 pause

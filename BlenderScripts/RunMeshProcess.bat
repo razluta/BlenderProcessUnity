@@ -20,5 +20,23 @@ echo.
 :: Triggering the Blender command and passing the current .bat argument as an argument for the .py script
 blender -b -P %mesh-process-script-path% -- --path %1
 
-:: Un-comment the pause below if you want the console window to stick around
-::pause
+:: Check if the Blender directory exists
+if not exist %blender-directory-path% (
+    echo Folder %blender-directory-path% does not exist.
+    pause
+)
+
+:: Check if the Blender script exists
+if not exist %mesh-process-script-path% (
+    echo File %mesh-process-script-path% does not exist.
+    pause
+)
+
+:: Check if provided asset path exists
+if not exist %1 (
+    echo Provided parameter asset path: %1% does not exist.
+    pause
+)
+
+:: Pause execution on any errors
+if not ERRORLEVEL 0 pause

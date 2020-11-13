@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using Debug = System.Diagnostics.Debug;
 
 namespace Editor
 {
@@ -44,7 +45,8 @@ namespace Editor
         [MenuItem(MenuItemBlenderToolsRunMeshProcess, true)]
         private static bool ValidateRunMeshProcess()
         {
-            return true;
+            // Verify that the current selection is a GameObject (not a scene, texture, etc.)
+            return Selection.activeObject is GameObject;
         }
     }
 

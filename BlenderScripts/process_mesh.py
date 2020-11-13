@@ -11,7 +11,9 @@ BLENDER_MODIFIER_BEVEL = "BEVEL"
 
 def get_args():
 	"""
-	:return:
+	A method to obtain the arguments that came with the triggered Python file - from the .bat file.
+	:rtype: object
+	:return: An object containing the arguments as properties.
 	"""
 	parser_double_dash = "--"
 	parser_path_short_argument = "-p"
@@ -31,7 +33,7 @@ def get_args():
 
 def setup_and_run_mesh_process():
 	"""
-	:return:
+	Initialize the arguments and run the mesh process.
 	"""
 	args = get_args()
 	source_asset_path = args.path
@@ -40,8 +42,10 @@ def setup_and_run_mesh_process():
 
 def process_mesh(asset_path):
 	"""
-	:param asset_path:
-	:return:
+	Process the mesh at the given asset_path.
+	In this sample, processing = beveling and exporting the beveled mesh to the same path, with an added
+	suffix to the name.
+	:param string asset_path: The absolute asset path.
 	"""
 	processed_mesh_suffix = "_processed"
 	
@@ -56,7 +60,7 @@ def process_mesh(asset_path):
 	print("The source asset name is: " + asset_name)
 	print("The source directory path is: " + source_asset_directory)
 	
-	# Clear the Blender scene
+	# Clear the default Blender scene
 	bpy.ops.object.select_all(action=BLENDER_ACTION_SELECT)
 	bpy.ops.object.delete()
 	

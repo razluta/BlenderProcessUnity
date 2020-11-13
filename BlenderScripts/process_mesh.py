@@ -2,6 +2,12 @@ import os
 import argparse
 import bpy
 
+# Constants
+FBX_EXTENSION = ".fbx"
+BLENDER_ACTION_SELECT = "SELECT"
+BLENDER_TYPE_MESH = "MESH"
+BLENDER_MODIFIER_BEVEL = "BEVEL"
+
 
 def get_args():
 	"""
@@ -38,32 +44,36 @@ def process_mesh(asset_path):
 	:return:
 	"""
 	processed_mesh_suffix = "_processed"
-	fbx_extension = ".fbx"
 	
 	asset_name = os.path.splitext(os.path.basename(asset_path))[0]
 	source_asset_directory = os.path.dirname(asset_path)
 	
 	# Determine new naming and paths for the processed mesh
 	export_asset_name = asset_name + processed_mesh_suffix
-	export_asset_path = os.path.join(source_asset_directory, export_asset_name + fbx_extension)
+	export_asset_path = os.path.join(source_asset_directory, export_asset_name + FBX_EXTENSION)
 	
 	print("The source asset path is: " + asset_path)
 	print("The source asset name is: " + asset_name)
 	print("The source directory path is: " + source_asset_directory)
 	
 	# Clear the Blender scene
-	bpy.ops.object.select_all(action="SELECT")
+	bpy.ops.object.select_all(action=BLENDER_ACTION_SELECT)
 	bpy.ops.object.delete()
 	
 	# Import the asset in the Blender scene
 	bpy.ops.import_scene.fbx(filepath=asset_path)
-	imported_assets = bpy.context.selected_objects
-	print("Imported assets: " + str(imported_assets))
 	
 	# Process the asset
-	# In this sample, I'm smoothing the asset and exporting the new mesh right next to the old one.
-	# Add your custom processing here.
-	print("Processing")
+	# In this sample, I'm bevelling the asset and exporting the new mesh right next to the old one.
+	# You can add your custom processing here and replace the sample.
+	imported_assets = bpy.context.selected_objects
+	for asset in imported_assets:
+		if asset.type != BLENDER_TYPE_MESH:
+			continue
+		
+		# Apply a bevel modifier on the mesh
+		bevel_modifier_name = "Bevel Modifier"
+		asset.modifiers.new(name=bevel_modifier_name, type=BLENDER_MODIFIER_BEVEL)
 	
 	# Export the asset from Blender back to Unity, next to the original asset
 	bpy.ops.export_scene.fbx(

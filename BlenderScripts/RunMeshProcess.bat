@@ -20,4 +20,5 @@ echo.
 :: Triggering the Blender command and passing the current .bat argument as an argument for the .py script
 blender -b -P %mesh-process-script-path% -- --path %1
 
-pause
+:: Un-comment the pause below if you want the console window to stick around
+::pause

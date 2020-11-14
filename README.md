@@ -3,4 +3,5 @@
 
 An repository exemplifying how to trigger a headless Blender operation from inside Unity.
 
+The image sequence below showcase how the tool currently works.
 ![](/UnityProject/Assets/Screenshots/BlenderProcessUnityDemo.gif)

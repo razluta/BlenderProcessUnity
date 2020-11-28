@@ -56,7 +56,7 @@ The image sequence below showcase how the tool currently works.
 ![](/UnityProject/Assets/Screenshots/BlenderProcessUnityDemo.gif)
 
 ## How it works
-- When the user triggers the tool from Unity (it can only be triggered on GameObjects), the code will launch a Process that runs a .bat file with a parameter (in this case, the parameter is the absolute file path for the .fbx mesh.
+- When the user triggers the tool from Unity (it can only be triggered on GameObjects), the code will launch a Process that runs a .bat file with a parameter (in this case, the parameter is the absolute file path for the .fbx mesh).
 - The .bat file that gets executed opens a headless version of Blender and passes the path to the .fbx as an argument as well as instructing Blender on what Python script to execute for the mesh processing.
 - The Python file that gets executed in Blender uses the headless version of Blender, opens a new scene, performs a cleanup, and receives the argument as a path to the mesh to import. After importing the mesh, in this sample, the script applies a Blender modifier (in this case a Bevel Modifier) and exports the mesh right next to the original mesh back in Unity.
 

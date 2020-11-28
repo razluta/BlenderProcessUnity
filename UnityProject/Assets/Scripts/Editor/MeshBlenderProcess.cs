@@ -50,5 +50,4 @@ namespace Editor
             return Selection.activeObject is GameObject;
         }
     }
-
 }

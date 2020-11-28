@@ -9,7 +9,7 @@ The tool will only run on Windows currently, as it uses a .bat file to trigger B
 ### Step 01 of 02 - Setup
 a) In the Unity Project, in the _Scripts/Editor_ folder, you'll need to modify the **MeshBlenderProcess.cs** script to:
 - (mandatory) point the two constants to your Blender .bat file (or the example provided)   
-- (optional) change where the script can be launched for in the menus
+- (optional) change where the script can be launched from in the menus
 
 The .bat process path is defined on this line:
 `private const string BlenderScriptPath = "D:\\example-repos\\BlenderProcessUnity\\BlenderScripts\\RunMeshProcess.bat";`

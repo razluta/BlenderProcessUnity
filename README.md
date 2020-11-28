@@ -15,6 +15,7 @@ The .bat process path is defined on this line:
 `private const string BlenderScriptPath = "D:\\example-repos\\BlenderProcessUnity\\BlenderScripts\\RunMeshProcess.bat";`
 
 The context menu for the tools is defined on this line:
+
 `private const string MenuItemBlenderToolsRunMeshProcess = "Assets/Blender Tools/Run Mesh Process";`
 
 b) In the .bat file, currently called **RunMeshProcess.bat**, you'll need to edit:
@@ -22,9 +23,11 @@ b) In the .bat file, currently called **RunMeshProcess.bat**, you'll need to edi
 - (mandatory) the local path for where the Blender script you want to run is located
 
 The Blender path is defined on this line:
+
 `set blender-directory-path="D:\SteamGames\steamapps\common\Blender"`
 
 The local path for the Blender script to run is on this line:
+
 `set mesh-process-script-path="D:\example-repos\BlenderProcessUnity\BlenderScripts\process_mesh.py"`
 
 c) Lastly, in the Python script currently called **process_mesh.py**, you can easily change the following:
@@ -33,9 +36,11 @@ c) Lastly, in the Python script currently called **process_mesh.py**, you can ea
 - (optional) the entire behavior of the script ... 
 
 The suffix is defined on this line:
+
 `processed_mesh_suffix = "_processed"`
 
 The operations ran on the mesh are defined on these lines:
+
 ```
 # Apply a bevel modifier on the mesh
 bevel_modifier_name = "Bevel Modifier"

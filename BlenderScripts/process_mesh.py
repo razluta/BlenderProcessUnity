@@ -65,24 +65,41 @@ def process_mesh(asset_path):
 	bpy.ops.object.delete()
 	
 	# Import the asset in the Blender scene
-	bpy.ops.import_scene.fbx(filepath=asset_path)
+	processing_failed = False
+	try:
+		bpy.ops.import_scene.fbx(filepath=asset_path)
+	except Exception as e:
+		processing_failed = True
+		print("Could not import asset at : " + asset_path)
+		print(e)
 	
 	# Process the asset
 	# In this sample, I'm bevelling the asset and exporting the new mesh right next to the old one.
 	# You can add your custom processing here and replace the sample.
-	imported_assets = bpy.context.selected_objects
-	for asset in imported_assets:
-		if asset.type != BLENDER_TYPE_MESH:
-			continue
-		
-		# Apply a bevel modifier on the mesh
-		bevel_modifier_name = "Bevel Modifier"
-		asset.modifiers.new(name=bevel_modifier_name, type=BLENDER_MODIFIER_BEVEL)
+	try:
+		imported_assets = bpy.context.selected_objects
+		for asset in imported_assets:
+			if asset.type != BLENDER_TYPE_MESH:
+				continue
+			
+			# Apply a bevel modifier on the mesh
+			bevel_modifier_name = "Bevel Modifier"
+			asset.modifiers.new(name=bevel_modifier_name, type=BLENDER_MODIFIER_BEVEL)
+	except Exception as e:
+		processing_failed = True
+		print("Could not process asset.")
+		print(e)
 	
 	# Export the asset from Blender back to Unity, next to the original asset
-	bpy.ops.export_scene.fbx(
-		filepath=export_asset_path,
-		use_selection=True)
+	if processing_failed:
+		return
+	try:
+		bpy.ops.export_scene.fbx(
+			filepath=export_asset_path,
+			use_selection=True)
+	except Exception as e:
+		print("Could not export to path: " + export_asset_path)
+		print(e)
 	
 	
 # Triggering the mesh process

@@ -31,13 +31,15 @@ namespace Editor
                     }
                 };
                 myProcess.Start();
-                myProcess.WaitForExit();
+                // myProcess.WaitForExit(); // Locks Unity from proceeding without the process being completed
                 myProcess.Close();
             }
             catch (Exception exception)
             {
                 UnityEngine.Debug.Log(exception);
             }
+            
+            AssetDatabase.Refresh();
         }
         
         // Validating the menu item can be executed

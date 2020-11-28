@@ -12,6 +12,7 @@ a) In the Unity Project, in the _Scripts/Editor_ folder, you'll need to modify t
 - (optional) change where the script can be launched from in the menus
 
 The .bat process path is defined on this line:
+
 `private const string BlenderScriptPath = "D:\\example-repos\\BlenderProcessUnity\\BlenderScripts\\RunMeshProcess.bat";`
 
 The context menu for the tools is defined on this line:
